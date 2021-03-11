@@ -120,7 +120,6 @@ export default class App extends React.Component{
                                 <div className="media media-chat media-chat-reverse">
                                   <div className="media-body">
                                       <p>{element.Q}</p>
-                                      
                                   </div>
                                 </div>
                               )
@@ -148,7 +147,7 @@ export default class App extends React.Component{
                           </div>
                       </div>
                       <div className="publisher bt-1 border-light"> 
-                        <img src="https://img.icons8.com/color/48/000000/circled-user-male-skin-type-7--v1.png"/>
+                        <img src="/user.png"/>
                         <input id='question' name='question' className="publisher-input" type="text" maxLength="80" placeholder="ถามคำถาม" onChange={this.onChange} onKeyPress={this.onKeyPress}/> 
                         <span className="publisher-btn file-group"> 
                         <i className="fa fa-paperclip file-browser"></i> 
