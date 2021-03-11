@@ -147,7 +147,7 @@ export default class App extends React.Component{
                           </div>
                       </div>
                       <div className="publisher bt-1 border-light"> 
-                        <img src="/user.png"/>
+                        <img src="./user.png"/>
                         <input id='question' name='question' className="publisher-input" type="text" maxLength="80" placeholder="ถามคำถาม" onChange={this.onChange} onKeyPress={this.onKeyPress}/> 
                         <span className="publisher-btn file-group"> 
                         <i className="fa fa-paperclip file-browser"></i> 
