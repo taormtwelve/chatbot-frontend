@@ -12,8 +12,12 @@ export default class App extends React.Component{
         {A:['สวัสดีครับ']}
       ],
       question: '',
-      count_q: 0
+      wait: false,
+      f_questions:[]
     }
+    axios.get('/get_fqs').then(res =>{
+      this.setState({f_questions: res.data.questions})
+    }).catch(err => console.log(err))
   }
 
   onChange = e =>{
@@ -29,30 +33,27 @@ export default class App extends React.Component{
       QnA.reverse()
       QnA.push({Q:this.state.question})
       QnA.reverse()
-      this.setState({QnA:QnA, saveQ:e.target.value, count_q:this.state.count_q++})
+      this.setState({QnA:QnA})
       e.target.value = ''
       this.ans()
     }
   }
 
   onClick = e =>{
-    this.setState({saveQ:e.target.innerHTML})
+    this.setState({question:e.target.innerHTML})
     let QnA = this.state.QnA
     QnA.reverse()
     QnA.push({Q:e.target.innerHTML})
     QnA.reverse()
-    this.setState({QnA: QnA,saveQ:e.target.innerHTML, count_q:this.state.count_q++})
-    e.target.value = ''
-    this.ans()
+    this.setState({QnA: QnA})
+    this.ans(e)
   }
 
-  async ans(){
-    await axios.post('/', {Q:this.state.question}).then(res =>{
-      // console.log(res)
+  async ans(e){
+    await axios.post('/',e ? {Q:e.target.innerHTML} : {Q:this.state.question}).then(res =>{
       let QnA = this.state.QnA
       let A = []
       QnA.reverse()
-      // QnA.push({Q:this.state.question})
       if(res.data.A1)
         A.push(res.data.A1)
       if(res.data.A2)
@@ -67,17 +68,15 @@ export default class App extends React.Component{
         A.push(res.data.A6)
       QnA.push({A:A})
       QnA.reverse()
-      this.setState({QnA: QnA, count_q:this.state.count_q--})
-      axios.post('/save',{Q:this.state.question, A:A}).catch(err=>console.log(err))
+      this.setState({QnA: QnA})
+      axios.post('/save',{Q:this.state.question, A:A, tag:res.data.tag}).catch(err=>console.log(err))
     }).catch(err => console.log(err))
+    this.setState({wait:false})
   }
 
   render(){
     return (
-    <div className="page-content" id="page-content">
-    <ul>
-      <li><a class="active" href="#home">CPE</a></li>
-    </ul>
+    <div className="page-content" id="page-content"> 
     <br></br>
       <div className="padding" >
           <div className="row  d-flex justify-content-center">
@@ -91,21 +90,21 @@ export default class App extends React.Component{
                     <div className="publisher bt-1 border-light"> 
                       <div className="media media-chat" onClick={this.onClick}>
                         <div className="media-body">
-                            <p>คำถาม1</p>
+                            <p id='0'>{this.state.f_questions[0]}</p>
                         </div>
                       </div>
                     </div>
                     <div className="publisher bt-1 border-light"> 
                       <div className="media media-chat" onClick={this.onClick}>
                         <div className="media-body">
-                            <p>คำถาม2</p>
+                            <p id='1'>{this.state.f_questions[1]}</p>
                         </div>
                       </div>
                     </div>
                     <div className="publisher bt-1 border-light"> 
                       <div className="media media-chat" onClick={this.onClick}>
                         <div className="media-body">
-                            <p>คำถาม3</p>
+                            <p id='2'>{this.state.f_questions[2]}</p>
                         </div>
                       </div>
                     </div>
@@ -133,7 +132,7 @@ export default class App extends React.Component{
                                 <div className="media media-chat">
                                   <img src=".\img\BOT.png" width="45px" height="45px"/>
                                   <div className="media-body">
-                                    {/* {this.state.count_q > 0 ? <p>กำลังพิมพ์</p>:<div></div>} */}
+                                    {/* {this.state.wait ? <p>กำลังพิมพ์</p>:<div></div>} */}
                                     {element.A.map(ans =>{
                                       if(typeof(ans) == "object") 
                                         return(<p><a href={ans.value} target="_blank">{ans.key}</a></p>) 
@@ -168,6 +167,9 @@ export default class App extends React.Component{
             </div>
           </div>
       </div>
+      <ul>
+      <li><a className="active" href="#home">CPE</a></li>
+    </ul>
   </div>
     );
   }
