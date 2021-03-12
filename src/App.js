@@ -75,9 +75,13 @@ export default class App extends React.Component{
   render(){
     return (
     <div className="page-content" id="page-content">
-      <div className="padding">
+    <ul>
+      <li><a class="active" href="#home">CPE</a></li>
+    </ul>
+    <br></br>
+      <div className="padding" >
           <div className="row  d-flex justify-content-center">
-            <div className="row col-md-12">
+            <div className="row col-md-11">
               <div className="col-md-4">
                 <div className="card card-bordered">
                   <div className="card-header">
@@ -114,41 +118,40 @@ export default class App extends React.Component{
                           <h4 className="card-title"><strong>CPE bot</strong></h4>
                       </div>
                       <div className="ps-container ps-theme-default ps-active-y chat-box" id="chat-content" >
-                          {this.state.QnA.map(element =>{
-                            if(element.Q){
+                        {this.state.QnA.map(element =>{
+                          if(element.Q){
+                            return(
+                              <div className="media media-chat media-chat-reverse">
+                                <div className="media-body">
+                                    <p>{element.Q}</p>
+                                </div>
+                              </div>
+                            )
+                          }
+                          else{
                               return(
-                                <div className="media media-chat media-chat-reverse">
+                                <div className="media media-chat">
+                                  <img src=".\img\BOT.png"/>
                                   <div className="media-body">
-                                      <p>{element.Q}</p>
+                                    {/* {this.state.count_q > 0 ? <p>กำลังพิมพ์</p>:<div></div>} */}
+                                    {element.A.map(ans =>{
+                                      if(typeof(ans) == "object") 
+                                        return(<p><a href={ans.value} target="_blank">{ans.key}</a></p>) 
+                                      else return(<p>{ans}</p>)})}
                                   </div>
                                 </div>
-                              )
-                            }
-                            else{
-                                return(
-                                  <div className="media media-chat">
-                                    <img src="https://img.icons8.com/fluent/48/000000/chatbot.png"/>
-                                    <div className="media-body">
-                                      {/* {this.state.count_q > 0 ? <p>กำลังพิมพ์</p>:<div></div>} */}
-                                      {element.A.map(ans =>{
-                                        if(typeof(ans) == "object") 
-                                          return(<p><a href={ans.value} target="_blank">{ans.key}</a></p>) 
-                                        else return(<p>{ans}</p>)})}
-                                    </div>
-                                  </div>
-                                )}
-                            
-                          })}
-                          <div className="ps-scrollbar-x-rail" style={{"left": "0px", "bottom": "0px"}}>
-                              <div className="ps-scrollbar-x" tabIndex="0" style={{"left": "0px" ,"width": "0px"}}></div>
-                          </div>
-                          <div className="ps-scrollbar-y-rail" style={{"top": "0px" ,"height": "0px", "right": "2px"}}>
-                              <div className="ps-scrollbar-y" tabIndex="0" style={{"top": "0px", "height": "2px"}}></div>
-                          </div>
+                              )}
+                        })}
+                      <div className="ps-scrollbar-x-rail" style={{"left": "0px", "bottom": "0px"}}>
+                          <div className="ps-scrollbar-x" tabIndex="0" style={{"left": "0px" ,"width": "0px"}}></div>
+                      </div>
+                      <div className="ps-scrollbar-y-rail" style={{"top": "0px" ,"height": "0px", "right": "2px"}}>
+                          <div className="ps-scrollbar-y" tabIndex="0" style={{"top": "0px", "height": "2px"}}></div>
+                      </div>
                       </div>
                       <div className="publisher bt-1 border-light"> 
-                        <img src="./user.png"/>
-                        <input id='question' name='question' className="publisher-input" type="text" maxLength="80" placeholder="ถามคำถาม" onChange={this.onChange} onKeyPress={this.onKeyPress}/> 
+                        <img src=".\img\HUMAN.png" width="45px" height="45px"/>
+                        <input id='question' name='question' className="publisher-input" type="text" maxLength="80" placeholder="เขียนคำถาม" onChange={this.onChange} onKeyPress={this.onKeyPress}/> 
                         <span className="publisher-btn file-group"> 
                         <i className="fa fa-paperclip file-browser"></i> 
                         <input type="file"/> 
