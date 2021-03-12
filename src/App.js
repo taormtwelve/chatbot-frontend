@@ -131,7 +131,7 @@ export default class App extends React.Component{
                           else{
                               return(
                                 <div className="media media-chat">
-                                  <img src=".\img\BOT.png"/>
+                                  <img src=".\img\BOT.png" width="45px" height="45px"/>
                                   <div className="media-body">
                                     {/* {this.state.count_q > 0 ? <p>กำลังพิมพ์</p>:<div></div>} */}
                                     {element.A.map(ans =>{
