@@ -15,7 +15,7 @@ export default class App extends React.Component{
       wait: false,
       f_questions:[]
     }
-    axios.get('/get_fqs').then(res =>{
+    axios.get('/get').then(res =>{
       this.setState({f_questions: res.data.questions})
     }).catch(err => console.log(err))
   }
