@@ -84,7 +84,7 @@ export default class App extends React.Component{
               <div className="col-md-4">
                 <div className="card card-bordered">
                   <div className="card-header">
-                      <h4 className="card-title"><strong>คำถามที่พบ่อย</strong></h4>
+                      <h4 className="card-title"><strong>คำถามที่พบบ่อย</strong></h4>
                   </div>
                   <div className="ps-container ps-theme-default ps-active-y" id="chat-content" >
                     <div className="publisher bt-1 border-light"> 
@@ -168,7 +168,7 @@ export default class App extends React.Component{
           </div>
       </div>
       <ul>
-      <li><a className="active" href="#home">CPE</a></li>
+      <li><a className="active">CPE</a></li>
     </ul>
   </div>
     );
