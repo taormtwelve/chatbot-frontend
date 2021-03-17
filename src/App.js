@@ -88,23 +88,23 @@ export default class App extends React.Component{
                   </div>
                   <div className="ps-container ps-theme-default ps-active-y" id="chat-content" >
                     <div className="publisher bt-1 border-light"> 
-                      <div className="media media-chat" onClick={this.onClick}>
+                      <div className="media media-chat">
                         <div className="media-body">
-                            <p id='0'>{this.state.f_questions[0]}</p>
+                            <p id='0' onClick={this.onClick}>{this.state.f_questions[0]}</p>
                         </div>
                       </div>
                     </div>
                     <div className="publisher bt-1 border-light"> 
-                      <div className="media media-chat" onClick={this.onClick}>
+                      <div className="media media-chat">
                         <div className="media-body">
-                            <p id='1'>{this.state.f_questions[1]}</p>
+                            <p id='1'  onClick={this.onClick}>{this.state.f_questions[1]}</p>
                         </div>
                       </div>
                     </div>
                     <div className="publisher bt-1 border-light"> 
-                      <div className="media media-chat" onClick={this.onClick}>
+                      <div className="media media-chat">
                         <div className="media-body">
-                            <p id='2'>{this.state.f_questions[2]}</p>
+                            <p id='2'  onClick={this.onClick}>{this.state.f_questions[2]}</p>
                         </div>
                       </div>
                     </div>
