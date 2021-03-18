@@ -168,7 +168,7 @@ export default class App extends React.Component{
           </div>
       </div>
       <ul>
-      <li><a className="active">CPE</a></li>
+      <li><a className="active" href="https://www.cpe.eng.cmu.ac.th/">CPE</a></li>
     </ul>
   </div>
     );
